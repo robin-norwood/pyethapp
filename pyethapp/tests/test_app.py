@@ -43,6 +43,13 @@ def test_no_such_command():
     result = runner.invoke(app.app, ['eat'])
     assert 'Error: No such command "eat"' in result.output, result.output
 
+def test_account_list():
+    runner = CliRunner()
+    result = runner.invoke(app.app, ['account', 'list'])
+    assert '#1' in result.output, result.output
+    assert 'Locked' in result.output, result.output
+
+    print(result.output)
 
 @pytest.mark.parametrize('content', ['', '<html/>', 'print "hello world"'])
 def test_non_dict_yaml_as_config_file(content):
@@ -117,3 +124,4 @@ if __name__ == '__main__':
     test_custom_config_file(('-C', 'myconfig.yaml'))
     test_custom_config_file(('-c', 'mygenesis.json'))
     test_custom_config_file(('-c', 'dict'))
+    test_account_list()

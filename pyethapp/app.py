@@ -583,7 +583,7 @@ def list_accounts(ctx):
                                                                  id='Id (if any)',
                                                                  locked='Locked'))
         for i, account in enumerate(accounts):
-            click.echo(fmt.format(i='#' + to_string(i + 1),
+            click.echo(fmt.format(i='#' + str(i + 1),
                                   address=encode_hex(account.address or ''),
                                   id=account.uuid or '',
                                   locked='yes' if account.locked else 'no'))
